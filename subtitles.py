@@ -317,81 +317,21 @@ class VideoTranscriber:
     def wrap_text(self, text, max_width):
         return textwrap.fill(text, max_width)
 
-    def create_video(self, editscript = False):
+    def create_video(self):
         print('creating video')
-        if editscript:
-            """self.text_array[0] = ["YOU'RE JUST TOO GOOD TO BE TRUE", 15.5, 19.5]
-            self.text_array[1] = ["CAN'T TAKE MY EYES OFF OF YOU", 20.0, 23.0]
-            self.text_array[2] = ["YOU'D BE LIKE HEAVEN TO TOUCH", 24.0, 27.0]
-            self.text_array[3] = ["I WANT TO HOLD YOU SO MUCH", 28.0, 31.0]
-            self.text_array[4] = ["AT LONG LAST LOVE HAS ARRIVED", 32.0, 35.0]
-            self.text_array[5] = ["AND I THANK GOD I'M ALIVE", 36.0, 38.5]
-            self.text_array[6] = [" YOU'RE JUST TOO GOOD TO BE TRUE", 40.0, 42.0]
-            self.text_array[7] = [" CAN'T TAKE MY EYES OFF OF YOU", 43.0, 46.0]
-            self.text_array[8] = ["PARDON THE WAY THAT I STARE", 47.0, 50.5]
-            self.text_array[9] = [" THERE'S NOTHING ELSE TO COMPARE", 51.0, 54.5]
-            self.text_array[10] = ["THIS SIDE OF YOU LEAVES ME WEAK", 55.0, 58.0]
-            self.text_array[11] = ["THERE ARE NO WORDS LEFT TO SPEAK", 59.0, 62.0]
-            self.text_array[12] = ["BUT IF YOU FEEL LIKE I FEEL", 63.0, 66.0]
-            self.text_array[13] = [" PLEASE LET ME KNOW THAT IT'S REAL", 66.5, 69.5]
-            self.text_array[14] = [" YOU'RE JUST TOO GOOD TO BE TRUE", 70.4, 73.0]
-            self.text_array[15] = [" CAN'T TAKE MY EYES OFF OF YOU", 74.0, 77.0]
-            self.text_array[16] = ["...", 86.0, 86.1]
-            self.text_array[17] = [" I LOVE YOU BABY", 95.0, 98.0]
-            self.text_array[18] = ["AND IF IT'S QUITE ALRIGHT I NEED YOU BABY", 98.0, 102.0]
-            self.text_array[19] = ["TO WARM A LONELY NIGHT", 102.0,104.0]
-            self.text_array[20] = ["I LOVE YA BABY",104.0, 106.0]
-            self.text_array[22] = [" OH PRETTY BABY", 110.5, 113.0]
-            self.text_array[23] = ["DONT BRING ME DOWN I PRAY", 113.5, 115.0]
-            self.text_array[24] = ["OH PRETTY BABY", 115.0, 117.0]
-            self.text_array[25] = ["NOW THAT I FOUND YOU STAY", 117.0, 119.2]
-            self.text_array[26] = [" LET ME LOVE YOU BABY", 119.2, 122.6]
-            self.text_array[27] = [" LET ME LOVE YOU", 122.8, 126.0]
-            self.text_array[29] = [" CAN'T TAKE MY EYES OFF OF YOU", 130.5, 133.5]
-            self.text_array[30] = [" YOU'D BE LIKE HEAVEN TO TOUCH", 134.5, 138.0]
-            self.text_array[31] = [" I WANT TO HOLD YOU SO MUCH", 138.5, 142.0]
-            self.text_array[33] = ["AND I THANK GOD I'M ALIVE", 146.0, 150.0]
-            self.text_array[34] = [" YOU'RE JUST TOO GOOD TO BE TRUE", 150.0, 153.0]
-            self.text_array[35] = [" CAN'T TAKE MY EYES OFF OF YOU", 154.0, 157.0]
-            self.text_array[36] = ["...", 158.0, 158.1]
-            self.text_array[37] = [" I LOVE YOU BABY", 167.0, 169.5]
-            self.text_array[39] = ["I NEED YOU BABY", 172.0, 174.0]
-            self.text_array[40] = ["TO WARM A LONELY NIGHT", 174.0, 176.0]
-            self.text_array[41] = [" I LOVE YA BABY", 176.0, 178.0]
-            self.text_array[43] = [" OH PRETTY BABY", 182.5, 185.0]
-            self.text_array[44] = ["DONT BRING ME DOWN I PRAY", 185.5, 187.5]
-            self.text_array[45] = ["OH PRETTY BABY", 187.5,189.0]
-            self.text_array[46] = ["NOW THAT I FOUND YOU STAY", 189.5, 191.0]
-            self.text_array[47] = [" OH PRETTY BABY", 192.0, 194.0]"""
-
-
-            #self.text_array[5] = ["YOU'RE JUST TOO GOOD TO BE TRUE CAN'T TAKE MY EYES OFF OF YOU", 70.0, 77.5]
-            #self.text_array[6] = ["I LOVE YOU BABY AND IF IT'S QUITE ALRIGHT I NEED YOU BABY TO WARM THE MORNING LIGHT I LOVE YOUR BABY", 95.0, 106.0]
-            #self.text_array[7] = ["I LOVE YOU BABY HANDS IT THE TITLE RIGHT I NEED YOUR BABY TO WARM THE MORNING LIGHT I LOVE YOUR BABY", 95.0, 106.0]
-            self.text_array = [["LET'S TRY DOES SCHLATT DOES JSCHLATT HAVE A GUN?", 0.0, 3.0],
-                                ["WOULDN'T YOU LIKE TO KNOW?", 5.5, 6.5],
-                                ["I DON'T HAVE TO FUCKING TELL YOU", 8.0,9.5],
-                                ["DO I HAVE TO TELL YOU?",9.5,10.5 ],
-                                ["YOU WANT TO FIND OUT?", 11.200000000000001, 12.0],
-                                ["NO COME ON BY FIND OUT",12.0, 13.3],
-                                ["NO NO NO NO COME ON", 13.3, 14.5],
-                                ["COME ON GIVE ME A VISIT", 14.5, 16.0]]
         self.extract_frames()
         final_video = CompositeVideoClip([self.video] + self.subtitle_clips)
         final_video = CompositeVideoClip([self.video] + self.frames).set_duration(self.text_array[-1][-1])
         final_video.write_videofile('output_vids/{}.mp4'.format(self.file_name))
 
 model_path = 'base'
-#video_path = "test_videos/Jschlatt_Cant_Celebrate_His_Birthday_Ever_Again!!!.mp4"
-#filename = "Jschlatt_Cant_Celebrate_His_Birthday_Ever_Again_Subtitles"
-filename = "Does_jschlatt_own_a_gun"
-video_path = "test_videos/Does_jschlatt_own_a_gunmp4.mp4"
-output_video_path = 'test_videos/{}.mp4'.format(filename)
-editscript = True
+filename = "output_file_name_here"
+video_path = "input_video.mp4"
+output_video_path = '{}.mp4'.format(filename)
 
 # TODO remove audio files when done
                 
 transcriber = VideoTranscriber(model_path, video_path, filename)
 transcriber.extract_audio()
 transcriber.transcribe_video()
-transcriber.create_video(editscript)
+transcriber.create_video()
