@@ -1,1 +1,1 @@
-# Word_Bolder
+# Word_Bolder and Subtitle Generator
